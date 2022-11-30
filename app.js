@@ -10,6 +10,7 @@ const connectDB = require("./config/db");
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const workRouter = require('./routes/work');
+const projectRouter = require("./routes/project");
 
 var app = express();
 
@@ -29,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/work', workRouter);
+app.use('/api/project', projectRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -2,7 +2,7 @@ const User = require("../models/userModel");
 const asyncHandler = require("express-async-handler");
 const generateToken = require("../utils/generateToken");
 const bcrypt = require("bcryptjs");
-const { registerValidate ,loginValidate } = require('../validation/validate');
+const { registerValidate ,loginValidate, putvalidate } = require('../validation/validate');
 const jwt = require('jsonwebtoken');
 
 
@@ -14,7 +14,7 @@ const registerUser = asyncHandler(async(req,res)=>{
     if(error) return res.status(400).send({success:false, msg:error.details[0].message});
     
 
-    const {image ,name, email, password, age, address, phone, gender, isAdmin} = req.body;
+    const {image ,name, email, password, isAdmin} = req.body;
     //1. check user đã tồn tại trong database hay chưa
     const Exist = await User.findOne({email});
     if(Exist){
@@ -22,16 +22,12 @@ const registerUser = asyncHandler(async(req,res)=>{
         throw new Error("đã có email này trong hệ thống")
     }
     // 2.save to database
-    const newUser = await User.create({ name, email, password, age, address, phone, gender, isAdmin});
+    const newUser = await User.create({ name, email, password, isAdmin});
     if(newUser){
         res.status(200).json({
             id: newUser.id,
             name: newUser.name,
             email: newUser.email,
-            age: newUser.age,
-            address: newUser.address,
-            phone: newUser.phone,
-            gender: newUser.gender,
             password: newUser.password,
             isAdmin: newUser.isAdmin,
             token: generateToken(newUser.id)
@@ -79,6 +75,7 @@ const getUserProfile = asyncHandler(async(req, res)=>{
             address: user.address,
             gender: user.gender,
             phone: user.phone,
+            textarea: user.textarea,
             isAdmin: user.isAdmin
         })
     }
@@ -94,6 +91,10 @@ const getAllUser = asyncHandler(async(req,res)=>{
 });
 
 const updateUserProfile = asyncHandler(async(req,res)=>{
+    // validate user
+    const {error} = putvalidate(req.body);
+    if(error) return res.status(400).send({success:false, msg:error.details[0].message});
+
     const user = await User.findById(req.user.id);
     if (user) {
         user.name = req.body.name || user.name;
@@ -103,6 +104,7 @@ const updateUserProfile = asyncHandler(async(req,res)=>{
         user.address = req.body.address || user.address;
         user.gender = req.body.gender || user.gender;
         user.phone = req.body.phone || user.phone;
+        user.textarea = req.body.textarea || user.textarea;
         if (req.body.password) {
             // Tại sao không phải hash password ở đây.
             user.password = req.body.password;
@@ -119,6 +121,7 @@ const updateUserProfile = asyncHandler(async(req,res)=>{
             address: updateUser.address,
             gender: updateUser.gender,
             phone: updateUser.phone,
+            textarea: updateUser.textarea,
             isAdmin: updateUser.isAdmin
         });
     } else {
@@ -154,12 +157,18 @@ const deleteUserById = asyncHandler(async (req, res) => {
          address:getUserById.address,
          gender:getUserById.gender,
          phone:getUserById.phone,
+         textarea:getUserById.textarea,
          isAdmin:getUserById.isAdmin
      })
     }
  });
  
  const putUserById = asyncHandler(async(req,res)=>{
+    
+    // validate user
+    const {error} = putvalidate(req.body);
+    if(error) return res.status(400).send({success:false, msg:error.details[0].message});
+
      const user = await User.findById(req.params.id);
      if (user) {
          user.name = req.body.name || user.name;
@@ -169,6 +178,7 @@ const deleteUserById = asyncHandler(async (req, res) => {
          user.address = req.body.address || user.address;
          user.gender = req.body.gender || user.gender;
          user.phone = req.body.phone || user.phone;
+         user.textarea = req.body.textarea || user.textarea;
          user.isAdmin = req.body.isAdmin || user.isAdmin;
          if (req.body.password) {
             // Tại sao không phải hash password ở đây.
@@ -185,6 +195,7 @@ const deleteUserById = asyncHandler(async (req, res) => {
          address = updateUser.address,
          gender = updateUser.gender,
          phone = updateUser.phone,
+         textarea = updateUser.textarea,
          isAdmin = updateUser.isAdmin
  
          res.json(updateUser);

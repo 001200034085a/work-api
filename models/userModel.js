@@ -33,8 +33,12 @@ const userSchema = mongoose.Schema({
         type:String,
         require:true
     },
-    isAdmin:{
+    textarea:{
         type:String,
+        require:true
+    },
+    isAdmin:{
+        type:String
     }
     
 });

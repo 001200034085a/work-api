@@ -8,22 +8,6 @@ const registerValidate=(data)=>{
         .max(100)
         .required(),
 
-        age:joi.number()
-        .min(1)
-        .max(200)
-        .required(),
-
-        address:joi.string()
-        .required(),
-
-        gender:joi.string()
-        .regex(/nam$|nữ$/)
-        .required(),
-
-        phone:joi.string()
-        .pattern(new RegExp('^[0-9]{10,12}$'))
-        .required(),
-
         email:joi.string()
         .email()
         .min(6)
@@ -54,5 +38,46 @@ const loginValidate=(data)=>{
     });
     return Schema.validate(data);
 };
-module.exports.registerValidate=registerValidate;
-module.exports.loginValidate=loginValidate;
+
+// validate putuser;
+const putvalidate=(data)=>{
+    const Schema=joi.object({
+        name:joi.string()
+        .min(5)
+        .max(100),
+
+        image:joi.string(),
+
+        age:joi.number()
+        .min(1)
+        .max(200),
+        
+
+        phone:joi.string()
+        .pattern(new RegExp('^[0-9]{10,12}$')),
+        
+
+        gender:joi.string()
+        .regex(/nam$|nữ$/),
+
+        address:joi.string(),
+        
+        email:joi.string()
+        .email()
+        .min(6),
+        
+        password:joi.string()
+        .pattern(new RegExp('^[a-zA-Z0-9]{6,30}$')),
+        
+        textarea:joi.string()
+        .max(200),
+
+        isAdmin:joi.string()
+        .regex(/true$|false$/)
+    });
+    return Schema.validate(data);
+};
+
+module.exports.registerValidate = registerValidate;
+module.exports.loginValidate = loginValidate;
+module.exports.putvalidate = putvalidate;
