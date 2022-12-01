@@ -22,7 +22,9 @@ const workValidate = (data)=>{
     description:joi.string()
     .min(1)
     .max(500)
-    .required()
+    .required(),
+    
+    deadline:joi.date().greater('now'),
  });
  return Schema.validate(data);
 }

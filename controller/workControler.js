@@ -1,7 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const generateToken = require("../utils/generateToken");
 const bcrypt = require("bcryptjs");
-const { findOne } = require("../models/userModel");
 const Work = require("../models/workModel");
 const { workValidate } = require("../validation/workValidate");
 
@@ -11,14 +10,14 @@ const PostWork = asyncHandler(async(req,res)=>{
     const {error} = workValidate(req.body);
     if(error) return res.status(400).send({success:false, msg:error.details[0].message});
 
-   const {work, progress, status, priority, description} = req.body;
+   const {work, progress, status, priority, description, deadline} = req.body;
    const works = await Work.findOne({work});
 
    if(works){
     res.status(400).send({success:false, msg:'đã có công việc này'})
    }
 
-   const newWork = await Work.create({work, progress, status, priority, description});
+   const newWork = await Work.create({work, progress, status, priority, description, deadline});
    if(newWork){
       res.status(200).json({
         id: newWork.id,
@@ -26,7 +25,8 @@ const PostWork = asyncHandler(async(req,res)=>{
         progress: newWork.progress,
         status: newWork.status,
         priority: newWork.priority,
-        description :newWork.description
+        description :newWork.description,
+        deadline: newWork.deadline,
       })
    }
    else{
@@ -49,6 +49,7 @@ const putWorkById = asyncHandler(async(req,res)=>{
     works.status = req.body.status || works.status;
     works.priority = req.body.priority || works.priority;
     works.description = req.body.description || works.description;
+    works.deadline = req.body.deadline || works.deadline;
 
     const updateWork = await works.save();
     id = updateWork.id,
@@ -56,7 +57,8 @@ const putWorkById = asyncHandler(async(req,res)=>{
     progress = updateWork.progress,
     status = updateWork.status,
     priority = updateWork.priority,
-    description = updateWork.description
+    description = updateWork.description,
+    deadline = updateWork.deadline, 
 
     res.json(updateWork);
   }

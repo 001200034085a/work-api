@@ -22,8 +22,11 @@ const workSchema = mongoose.Schema({
     description:{
         type:String,
         require:true
+    },
+    deadline:{
+        type:String, 
+        require:true
     }
-
 });
 
 const Work = mongoose.model('Work',workSchema);
