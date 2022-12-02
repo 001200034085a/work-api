@@ -9,7 +9,7 @@ const projectValidate = (data)=>{
 
     textarea:joi.string()
     .min(1)
-    .max(100)
+    .max(1000)
     .required(),
 
     status:joi.string()

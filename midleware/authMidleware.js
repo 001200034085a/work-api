@@ -36,8 +36,90 @@ const isAdmin = (req, res, next) => {
         res.status(401);
         throw new Error('Member is not admin');
     }
+};
+
+const isAdmin1 = (req, res, next) => {
+    if (req.user && req.user.isAdmin1) {
+        next();
+    } else {
+        res.status(401);
+        throw new Error('Member is not admin1');
+    }
+};
+
+const isAdmin2 = (req, res, next) => {
+    if (req.user && req.user.isAdmin2) {
+        next();
+    } else {
+        res.status(401);
+        throw new Error('Member is not admin2');
+    }
+};
+
+const isAdmin3 = (req, res, next) => {
+    if (req.user && req.user.isAdmin3) {
+        next();
+    } else {
+        res.status(401);
+        throw new Error('Member is not admin3');
+    }
+};
+
+const isAdmin4 = (req, res, next) => {
+    if (req.user && req.user.isAdmin4) {
+        next();
+    } else {
+        res.status(401);
+        throw new Error('Member is not admin4');
+    }
+};
+
+const isAdmin5 = (req, res, next) => {
+    if (req.user && req.user.isAdmin5) {
+        next();
+    } else {
+        res.status(401);
+        throw new Error('Member is not admin5');
+    }
+};
+
+const isAdmin6 = (req, res, next) => {
+    if (req.user && req.user.isAdmin6) {
+        next();
+    } else {
+        res.status(401);
+        throw new Error('Member is not admin6');
+    }
+};
+
+const isAdmin7 = (req, res, next) => {
+    if (req.user && req.user.isAdmin7) {
+        next();
+    } else {
+        res.status(401);
+        throw new Error('Member is not admin7');
+    }
+};
+
+const isAdmin8 = (req, res, next) => {
+    if (req.user && req.user.isAdmin8) {
+        next();
+    } else {
+        res.status(401);
+        throw new Error('Member is not admin8');
+    }
 }
+
+
 module.exports = {
     protect,
-    isAdmin
+    isAdmin,
+    isAdmin1,
+    isAdmin2,
+    isAdmin3,
+    isAdmin4,
+    isAdmin5,
+    isAdmin6,
+    isAdmin7,
+    isAdmin8
 }

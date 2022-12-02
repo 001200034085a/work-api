@@ -73,7 +73,32 @@ const putvalidate=(data)=>{
         .max(200),
 
         isAdmin:joi.string()
-        .regex(/true$|false$/)
+        .regex(/true$|false$/),
+
+        isAdmin1:joi.string()
+        .regex(/true$|false$/),
+
+        isAdmin2:joi.string()
+        .regex(/true$|false$/),
+
+        isAdmin3:joi.string()
+        .regex(/true$|false$/),
+
+        isAdmin4:joi.string()
+        .regex(/true$|false$/),
+
+        isAdmin5:joi.string()
+        .regex(/true$|false$/),
+
+        isAdmin6:joi.string()
+        .regex(/true$|false$/),
+
+        isAdmin7:joi.string()
+        .regex(/true$|false$/),
+
+        isAdmin8:joi.string()
+        .regex(/true$|false$/),
+
     });
     return Schema.validate(data);
 };

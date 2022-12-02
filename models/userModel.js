@@ -38,9 +38,32 @@ const userSchema = mongoose.Schema({
         require:true
     },
     isAdmin:{
+        type: String
+    },
+    isAdmin1:{
         type:String
-    }
-    
+    },
+    isAdmin2:{
+        type:String
+    },
+    isAdmin3:{
+        type:String
+    },
+    isAdmin4:{
+        type:String
+    },
+    isAdmin5:{
+        type:String
+    },
+    isAdmin6:{
+        type:String
+    },
+    isAdmin7:{
+        type:String
+    },
+    isAdmin8:{
+        type:String
+    },
 });
 
 userSchema.pre('save',async function (next){
