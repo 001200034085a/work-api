@@ -75,27 +75,8 @@ const PutProject = asyncHandler(async(req, res)=>{
     
 });
 
-const putUserById = asyncHandler(async(req,res)=>{
-    const works = await Work.findById(req.params.id);
-  
-    if(works){
-      
-      works.progress = req.body.progress || works.progress;
-      
-      const updateWork = await works.save();
-      id = updateWork.id,
-      
-      progress = updateWork.progress,
-      
-  
-      res.json(updateWork);
-    }
-    else{
-      res.status(400);
-      throw new Error('work not found')
-    }
-  })
+
 
 module.exports = {
-    PostProject, GetProject, DeleteProject, PutProject, putUserById
+    PostProject, GetProject, DeleteProject, PutProject
 }

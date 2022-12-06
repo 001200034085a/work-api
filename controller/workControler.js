@@ -87,12 +87,36 @@ const putUserById = asyncHandler(async(req,res)=>{
 
   if(works){
     
-    works.progress = req.body.progress || works.progress;
+    works.status = req.body.status || works.status;
     
     const updateWork = await works.save();
     id = updateWork.id,
     
-    progress = updateWork.progress,
+    status = updateWork.status,
+    
+
+    res.json(updateWork);
+  }
+  else{
+    res.status(400);
+    throw new Error('work not found')
+  }
+});
+
+const putInformation = asyncHandler(async(req,res)=>{
+  const works = await Work.findById(req.params.id);
+
+  if(works){
+    
+    works.work = req.body.work || works.work;
+    works.description = req.body.description || works.description;
+    works.deadline = req.body.deadline || works.deadline
+    
+    const updateWork = await works.save();
+    id = updateWork.id,
+    work = updateWork.work,
+    description = updateWork.description,
+    deadline = updateWork.deadline
     
 
     res.json(updateWork);
@@ -104,5 +128,5 @@ const putUserById = asyncHandler(async(req,res)=>{
 })
 
 module.exports ={
-    PostWork, GetAllWork, putWorkById, DeleteWork, putUserById
+    PostWork, GetAllWork, putWorkById, DeleteWork, putUserById, putInformation
 }
