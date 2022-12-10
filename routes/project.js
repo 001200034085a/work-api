@@ -4,7 +4,7 @@ const router = express.Router();
 const { protect, isAdmin5, isAdmin1, isAdmin3, isAdmin7, isAdmin4 } = require('../midleware/authMidleware');
 
 
-router.post("/", protect, isAdmin3, PostProject);
+router.post("/", protect, PostProject);
 
 router.get("/", GetProject);
 

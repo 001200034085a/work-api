@@ -236,6 +236,7 @@ const deleteUserById = asyncHandler(async (req, res) => {
          gender = updateUser.gender,
          phone = updateUser.phone,
          textarea = updateUser.textarea,
+         isAdmin = updateUser.isAdmin,
          isAdmin1 = updateUser.isAdmin1,
          isAdmin2 = updateUser.isAdmin2,
          isAdmin3 = updateUser.isAdmin3,

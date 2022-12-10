@@ -98,7 +98,6 @@ const putvalidate=(data)=>{
 
         isAdmin8:joi.string()
         .regex(/true$|false$/),
-
     });
     return Schema.validate(data);
 };

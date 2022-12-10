@@ -38,7 +38,9 @@ const userSchema = mongoose.Schema({
         require:true
     },
     isAdmin:{
-        type: String
+        type: String, 
+        require:true,
+        default:false
     },
     isAdmin1:{
         type:String
