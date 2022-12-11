@@ -4,13 +4,66 @@ const Project = require("../models/projectModel");
 const Member = require("../models/memberModel");
 const generateToken = require("../utils/generateToken");
 
+const PostMember = asyncHandler(async(req,res)=>{
+    const user = await User.findOne({email: req.body.email});
+    if(!user){
+        res.status(400).send({mgs:"không tìm thấy user vs email"});
+    }
+
+    const member = {
+        user: user.id,
+        project: req.body.project,
+        project_owner: req.body.project_owner,
+        status:"pending",
+        date:new Date().toISOString(),
+        isAdmin1: req.body.isAdmin1,
+        isAdmin2: req.body.isAdmin2,
+        isAdmin3: req.body.isAdmin3,
+        isAdmin4: req.body.isAdmin4,
+        isAdmin5: req.body.isAdmin5,
+        isAdmin6: req.body.isAdmin6,
+        isAdmin7: req.body.isAdmin7,
+        isAdmin8: req.body.isAdmin8,
+        token : generateToken(user.id)
+    }
+    // res.status(200).send(member);
+
+    const newMember = await Member.create(member);
+    res.status(200).send(newMember)
+    
+});
+
+const ChangeStatusMember = asyncHandler(async(req, res)=>{
+   const member = await Member.findById(req.params.memberId);
+
+   if(!member){
+    res.status(400).send({mgs:"không tìm thấy thành viên"});
+   }
+   
+    const status = req.body.action;
+    member.status = status;
+
+    if(req.body.action === "refuse"){
+        const newMember = await Member.deleteOne({memberId: req.params.memberId});
+        res.json("remove member")
+    }
+    else{
+        const newMember = await Member.updateOne({id: req.params.id},{status});
+        res.status(200).send(member);
+    }
+ 
+});
 
 
+const GetMember = asyncHandler(async(req,res)=>{
+    const member = await Member.findById(req.params.id);
+    res.json(member)
+});
 
 const GetAllMember = asyncHandler(async(req,res)=>{
     const member = await Member.find({});
     res.json(member)
-});
+})
 
 const PutMember = asyncHandler(async(req,res)=>{
 
@@ -62,5 +115,5 @@ const DeleteMember = asyncHandler(async(req,res)=>{
 
 
 module.exports = {
-     GetAllMember, PutMember, DeleteMember
+    PostMember, GetMember, GetAllMember, PutMember, DeleteMember, ChangeStatusMember
 }

@@ -13,7 +13,7 @@ const projectValidate = (data)=>{
     .required(),
 
     status:joi.string()
-    .regex(/$Đang thực hiện|Đã hoàn thành$|Bị hủy bỏ$/)
+    .regex(/Đang thực hiện$|Đã hoàn thành$|Bị hủy bỏ$/)
     .required(),
 
     deadline:joi.date().greater('now'),

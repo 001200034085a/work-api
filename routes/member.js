@@ -1,14 +1,17 @@
 const express = require("express");
-const {  GetAllMember, PutMember, DeleteMember } = require("../controller/memberControler");
+const {  PostMember, GetMember, PutMember, DeleteMember, ChangeStatusMember, GetAllMember } = require("../controller/memberControler");
 const { protect, isAdmin } = require("../midleware/authMidleware");
-const { protectMember, isAdmin1, isAdmin5 } = require("../midleware/memberMidleware");
 const router = express.Router();
 
-// router.post("/", protect, PostMember);
+router.post("/",  PostMember);
+
+router.post("/changeStatusMember/:memberId", ChangeStatusMember )
+
+router.get("/project/:id", GetMember);
 
 router.get("/", GetAllMember);
 
-router.put("/:id", protectMember,  isAdmin1, PutMember);
+router.put("/:id",  PutMember);
 
 router.put("/isAdmin/:id", protect, isAdmin, PutMember);
 
