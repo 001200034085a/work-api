@@ -86,52 +86,10 @@ const memberSchema = mongoose.Schema({
    date:{
       type:String
    },
-   // permissions:[{
-   //    type:String
-   // }]
-      isAdmin1:{
-      type:Boolean,
-      require:true,
-      default:false
-   },
-   isAdmin2:{
-      type:Boolean,
-      require:true,
-      default:false
-   },
-   isAdmin3:{
-      type:Boolean,
-      require:true,
-      default:false
-   },
-   isAdmin4:{
-      type:Boolean,
-      require:true,
-      default:true
-   },
-   isAdmin5:{
-      type:Boolean,
-      require:true,
-      default:true
-   },
-   isAdmin6:{
-      type:Boolean,
-      require:true,
-      default:false
-   },
-   isAdmin7:{
-      type:Boolean,
-      require:true,
-      default:false
-   },
-   isAdmin8:{
-      type:Boolean,
-      require:true,
-      default:false
-   },
-   token:{
+   permissions:[{
       type:String
-   }
+   }]
+  
    
 });
 

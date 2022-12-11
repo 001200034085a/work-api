@@ -54,14 +54,6 @@ const loginUser = asyncHandler(async(req,res)=>{
             email : user.email,
             password: user.password,
             isAdmin: user.isAdmin,
-            isAdmin1 : user.isAdmin1,
-            isAdmin2 : user.isAdmin2,
-            isAdmin3 : user.isAdmin3,
-            isAdmin4 : user.isAdmin4,
-            isAdmin5 : user.isAdmin5,
-            isAdmin6 : user.isAdmin6,
-            isAdmin7 : user.isAdmin7,
-            isAdmin8 : user.isAdmin8,
             token: generateToken(user.id)
         });
     }
@@ -85,14 +77,6 @@ const getUserProfile = asyncHandler(async(req, res)=>{
             phone: user.phone,
             textarea: user.textarea,
             isAdmin: user.isAdmin,
-            isAdmin1 : user.isAdmin1,
-            isAdmin2 : user.isAdmin2,
-            isAdmin3 : user.isAdmin3,
-            isAdmin4 : user.isAdmin4,
-            isAdmin5 : user.isAdmin5,
-            isAdmin6 : user.isAdmin6,
-            isAdmin7 : user.isAdmin7,
-            isAdmin8 : user.isAdmin8,
         })
     }
     else{
@@ -138,15 +122,7 @@ const updateUserProfile = asyncHandler(async(req,res)=>{
             gender: updateUser.gender,
             phone: updateUser.phone,
             textarea: updateUser.textarea,
-            isAdmin: updateUser.isAdmin,
-            isAdmin1 : updateUser.isAdmin1,
-            isAdmin2 : updateUser.isAdmin2,
-            isAdmin3 : updateUser.isAdmin3,
-            isAdmin4 : updateUser.isAdmin4,
-            isAdmin5 : updateUser.isAdmin5,
-            isAdmin6 : updateUser.isAdmin6,
-            isAdmin7 : updateUser.isAdmin7,
-            isAdmin8 : updateUser.isAdmin8,
+            isAdmin: updateUser.isAdmin
         });
     } else {
         res.status(401);
@@ -182,15 +158,8 @@ const deleteUserById = asyncHandler(async (req, res) => {
          gender:getUserById.gender,
          phone:getUserById.phone,
          textarea:getUserById.textarea,
-         isAdmin:getUserById.isAdmin,
-         isAdmin1:getUserById.isAdmin1,
-         isAdmin2:getUserById.isAdmin2,
-         isAdmin3:getUserById.isAdmin3,
-         isAdmin4:getUserById.isAdmin4,
-         isAdmin5:getUserById.isAdmin5,
-         isAdmin6:getUserById.isAdmin6,
-         isAdmin7:getUserById.isAdmin7,
-         isAdmin8:getUserById.isAdmin8,
+         isAdmin:getUserById.isAdmin
+         
      })
     }
  });
@@ -212,14 +181,6 @@ const deleteUserById = asyncHandler(async (req, res) => {
          user.phone = req.body.phone || user.phone;
          user.textarea = req.body.textarea || user.textarea;
          user.isAdmin = req.body.isAdmin || user.isAdmin;
-         user.isAdmin1 = req.body.isAdmin1 || user.isAdmin1;
-         user.isAdmin2 = req.body.isAdmin2 || user.isAdmin2;
-         user.isAdmin3 = req.body.isAdmin3 || user.isAdmin3;
-         user.isAdmin4 = req.body.isAdmin4 || user.isAdmin4;
-         user.isAdmin5 = req.body.isAdmin5 || user.isAdmin5;
-         user.isAdmin6 = req.body.isAdmin6 || user.isAdmin6;
-         user.isAdmin7 = req.body.isAdmin7 || user.isAdmin7;
-         user.isAdmin8 = req.body.isAdmin8 || user.isAdmin8;
          if (req.body.password) {
             // Tại sao không phải hash password ở đây.
             user.password = req.body.password;
@@ -237,14 +198,7 @@ const deleteUserById = asyncHandler(async (req, res) => {
          phone = updateUser.phone,
          textarea = updateUser.textarea,
          isAdmin = updateUser.isAdmin,
-         isAdmin1 = updateUser.isAdmin1,
-         isAdmin2 = updateUser.isAdmin2,
-         isAdmin3 = updateUser.isAdmin3,
-         isAdmin4 = updateUser.isAdmin4,
-         isAdmin5 = updateUser.isAdmin5,
-         isAdmin6 = updateUser.isAdmin6,
-         isAdmin7 = updateUser.isAdmin7,
-         isAdmin8 = updateUser.isAdmin8,
+         
  
          res.json(updateUser);
      } else {
