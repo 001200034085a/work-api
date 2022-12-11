@@ -3,6 +3,7 @@ const User = require("../models/userModel");
 const Project = require("../models/projectModel");
 const Member = require("../models/memberModel");
 const generateToken = require("../utils/generateToken");
+const { memberValidate } = require("../validation/memberValidate");
 
 const PostMember = asyncHandler(async(req,res)=>{
     const user = await User.findOne({email: req.body.email});
@@ -35,6 +36,11 @@ const PostMember = asyncHandler(async(req,res)=>{
 
 const ChangeStatusMember = asyncHandler(async(req, res)=>{
    const member = await Member.findById(req.params.memberId);
+
+   const {error} = memberValidate(req.body);
+   if(error){
+    res.status(400).send({success:false ,msg:error.details[0].message});
+   }
 
    if(!member){
     res.status(400).send({mgs:"không tìm thấy thành viên"});
