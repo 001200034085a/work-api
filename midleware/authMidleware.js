@@ -16,6 +16,7 @@ const protect = asyncHandler(async (req, res, next) => {
             const userInfo = await User.findById(userVerify.id).select('-password');
             console.log('userInfo', userInfo);
             req.user = userInfo;
+            
             // req.user = await User.findById(userVerify.id).select('-password');
             next();
         } catch (error) {
