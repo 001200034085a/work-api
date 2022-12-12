@@ -125,8 +125,13 @@ const putInformation = asyncHandler(async(req,res)=>{
     res.status(400);
     throw new Error('work not found')
   }
+});
+
+const getById = asyncHandler(async(req, res)=>{
+  const work = await Work.findById(req.params.id);
+  res.json(work)
 })
 
 module.exports ={
-    PostWork, GetAllWork, putWorkById, DeleteWork, putUserById, putInformation
+    PostWork, GetAllWork, putWorkById, DeleteWork, putUserById, putInformation, getById
 }

@@ -1,11 +1,13 @@
 const express = require("express");
-const { PostWork, GetAllWork, putWorkById, DeleteWork, putUserById, putInformation} = require("../controller/workControler");
+const { PostWork, GetAllWork, putWorkById, DeleteWork, putUserById, putInformation, getById} = require("../controller/workControler");
 const { protect, isAdmin } = require("../midleware/authMidleware");
 const router = express.Router();
 
-router.post("/",protect,  PostWork);
+router.post("/",  PostWork);
 
 router.get("/", GetAllWork);
+
+router.get("/:id", getById);
 
 router.put("/:id", protect,  putWorkById);
 
