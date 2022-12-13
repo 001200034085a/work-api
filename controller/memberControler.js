@@ -3,6 +3,7 @@ const User = require("../models/userModel");
 const Project = require("../models/projectModel");
 const Member = require("../models/memberModel");
 const { memberValidate } = require("../validation/memberValidate");
+const generateTokenMember = require("../utils/generateTokenmember");
 
 
 
@@ -12,18 +13,48 @@ const PostMember = asyncHandler(async(req,res)=>{
         res.status(400).send({mgs:"không tìm thấy user vs email"});
     }
 
-    const member = {
-        user: user.id,
+    // const member = {
+    //     user: user.id,
+    //     project: req.body.project,
+    //     project_owner: req.body.project_owner,
+    //     status:"pending",
+    //     date:new Date().toISOString(),
+    //     permissions:["p4", "p5"]
+    // }
+    // res.status(200).send(member);
+    
+    const newMember = await Member.create({user: user.id,
         project: req.body.project,
         project_owner: req.body.project_owner,
         status:"pending",
         date:new Date().toISOString(),
-        permissions:["p4", "p5"]
-    }
-    // res.status(200).send(member);
+        isAdmin1: req.body.isAdmin1,
+        isAdmin2: req.body.isAdmin2,
+        isAdmin3: req.body.isAdmin3,
+        isAdmin4: req.body.isAdmin4,
+        isAdmin5: req.body.isAdmin5,
+        isAdmin6: req.body.isAdmin6,
+        isAdmin7: req.body.isAdmin7,
+        isAdmin8: req.body.isAdmin8,
+    });
 
-    const newMember = await Member.create(member);
-    res.status(200).send(newMember);
+    res.status(200).json({
+        id: newMember.id,
+        user: newMember.user,
+        project: newMember.project,
+        project_owner: newMember.project_owner,
+        status: newMember.status,
+        date: newMember.date,
+        isAdmin1: newMember.isAdmin1,
+        isAdmin2: newMember.isAdmin2,
+        isAdmin3: newMember.isAdmin3,
+        isAdmin4: newMember.isAdmin4,
+        isAdmin5: newMember.isAdmin5,
+        isAdmin6: newMember.isAdmin6,
+        isAdmin7: newMember.isAdmin7,
+        isAdmin8: newMember.isAdmin8,
+        token : generateTokenMember(newMember.id)
+    });
 });
 
 const ChangeStatusMember = asyncHandler(async(req, res)=>{
@@ -46,7 +77,7 @@ const ChangeStatusMember = asyncHandler(async(req, res)=>{
         res.json("remove member")
     }
     else{
-        const newMember = await Member.updateOne({id: req.params.id},{status});
+        const newMember = await Member.updateOne({memberId: req.params.memberId},{status});
         res.status(200).send(member);
     }
  

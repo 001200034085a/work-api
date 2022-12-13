@@ -41,6 +41,9 @@ const userSchema = mongoose.Schema({
         type: String, 
         require:true,
         default:false
+    },
+    member:{
+        type:Object
     }
 });
 

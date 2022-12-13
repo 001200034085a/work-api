@@ -62,7 +62,7 @@ const { Schema } = mongoose;
 // module.exports = Member;
 
 const memberSchema = mongoose.Schema({
-   id: Schema.Types.ObjectId,
+   // id: Schema.Types.ObjectId,
      
    project:{
       type: Schema.Types.ObjectId,
@@ -86,9 +86,49 @@ const memberSchema = mongoose.Schema({
    date:{
       type:String
    },
-   permissions:[{
+   isAdmin1:{
+      type:String,
+      require:true,
+      default:false,
+   },
+   isAdmin2:{
+      type:String,
+      require:true,
+      default:false,
+   },
+   isAdmin3:{
+      type:String,
+      require:true,
+      default:false,
+   },
+   isAdmin4:{
+      type:String,
+      require:true,
+      default:true,
+   },
+   isAdmin5:{
+      type:String,
+      require:true,
+      default:true,
+   },
+   isAdmin6:{
+      type:String,
+      require:true,
+      default:false,
+   },
+   isAdmin7:{
+      type:String,
+      require:true,
+      default:false,
+   },
+   isAdmin8:{
+      type:String,
+      require:true,
+      default:false,
+   },
+   token :{
       type:String
-   }]
+   }
   
    
 });
