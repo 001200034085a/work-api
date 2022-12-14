@@ -94,7 +94,7 @@ const memberSchema = mongoose.Schema({
    isAdmin2:{
       type:String,
       require:true,
-      default:false,
+      default:true,
    },
    isAdmin3:{
       type:String,

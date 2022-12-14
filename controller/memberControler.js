@@ -7,6 +7,7 @@ const generateTokenMember = require("../utils/generateTokenmember");
 
 
 
+
 const PostMember = asyncHandler(async(req,res)=>{
     const user = await User.findOne({email: req.body.email});
     if(!user){
@@ -99,11 +100,25 @@ const PutMember = asyncHandler(async(req,res)=>{
     const member = await Member.findById(req.params.id);
     if(member){
         
-        member.permissions = req.body.permissions || member.permissions;
+        member.isAdmin1 = req.body.isAdmin1 || member.isAdmin1;
+        member.isAdmin2 = req.body.isAdmin2 || member.isAdmin2;
+        member.isAdmin3 = req.body.isAdmin3 || member.isAdmin3;
+        member.isAdmin4 = req.body.isAdmin4 || member.isAdmin4;
+        member.isAdmin5 = req.body.isAdmin5 || member.isAdmin5;
+        member.isAdmin6 = req.body.isAdmin6 || member.isAdmin6;
+        member.isAdmin7 = req.body.isAdmin7 || member.isAdmin7;
+        member.isAdmin8 = req.body.isAdmin8 || member.isAdmin8;
 
         const updateMember = await member.save();
         id = updateMember.id;
-        permissions = updateMember.permissions;
+        isAdmin1 = updateMember.isAdmin1;
+        isAdmin2 = updateMember.isAdmin2;
+        isAdmin3 = updateMember.isAdmin3;
+        isAdmin4 = updateMember.isAdmin4;
+        isAdmin5 = updateMember.isAdmin5;
+        isAdmin6 = updateMember.isAdmin6;
+        isAdmin7 = updateMember.isAdmin7;
+        isAdmin8 = updateMember.isAdmin8;
 
         res.json(updateMember)
     }

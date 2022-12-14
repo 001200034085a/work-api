@@ -49,8 +49,6 @@ const DeleteProject = asyncHandler(async(req,res)=>{
 });
 
 const PutProject = asyncHandler(async(req, res)=>{
-    const {error} = projectValidate(req.body);
-    if(error) return res.status(400).send({success:false, msg:error.details[0].message});
 
     const project = await Project.findById(req.params.id);
     if(project){
