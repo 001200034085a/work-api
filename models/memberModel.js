@@ -87,42 +87,42 @@ const memberSchema = mongoose.Schema({
       type:String
    },
    isAdmin1:{
-      type:String,
+      type:Boolean,
       require:true,
       default:false,
    },
    isAdmin2:{
-      type:String,
+      type:Boolean,
       require:true,
       default:true,
    },
    isAdmin3:{
-      type:String,
+      type:Boolean,
       require:true,
       default:false,
    },
    isAdmin4:{
-      type:String,
+      type:Boolean,
       require:true,
       default:true,
    },
    isAdmin5:{
-      type:String,
+      type:Boolean,
       require:true,
       default:true,
    },
    isAdmin6:{
-      type:String,
+      type:Boolean,
       require:true,
       default:false,
    },
    isAdmin7:{
-      type:String,
+      type:Boolean,
       require:true,
       default:false,
    },
    isAdmin8:{
-      type:String,
+      type:Boolean,
       require:true,
       default:false,
    },

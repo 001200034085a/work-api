@@ -13,8 +13,8 @@ router.post("/", PostProject);
 
 router.get("/", GetProject);
 
-router.delete("/:id",protectMember, isAdmin1, checkProject, DeleteProject);
+router.delete("/:id",protectMember, isAdmin7, checkProject, DeleteProject);
 
-router.put("/:id", protectMember, isAdmin7, checkProject, PutProject);
+router.put("/:id", protectMember, isAdmin1, checkProject, PutProject);
 
 module.exports = router;
