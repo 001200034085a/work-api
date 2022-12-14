@@ -54,7 +54,7 @@ const PutProject = asyncHandler(async(req, res)=>{
 
     const project = await Project.findById(req.params.id);
     if(project){
-        project.title = req.body.project || project.title;
+        project.title = req.body.title || project.title;
         project.textarea = req.body.textarea || project.textarea;
         project.status = req.body.status || project.textarea;
         project.deadline = req.body.deadline || project.deadline;

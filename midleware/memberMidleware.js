@@ -14,7 +14,7 @@ const protectMember = asyncHandler(async (req, res, next) => {
             const memberVerify = jwt.verify(token, 'thanhvien');
             console.log('memberVerify', memberVerify);
             const memberInfo = await Member.findById(memberVerify.id);
-            console.log('userInfo', memberInfo);
+            console.log('memberInfo', memberInfo);
             req.member = memberInfo;
             
             // req.user = await User.findById(userVerify.id).select('-password');
@@ -104,6 +104,16 @@ const isAdmin8 = (req, res, next) => {
     }
 };
 
+const checkProject = (req ,res, next)=>{
+    const {id} = req.params;
+
+    
+    if(req.member.project != id){
+        res.status(400).send({msg:"không phải thành viên dự án này"})
+    }
+    next();
+}
+
 
 
 module.exports = {
@@ -115,5 +125,6 @@ module.exports = {
     isAdmin5,
     isAdmin6,
     isAdmin7,
-    isAdmin8
+    isAdmin8,
+    checkProject
 }
