@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+const { Schema } = mongoose;
 
 const userSchema = mongoose.Schema({
     image:{
@@ -43,7 +44,9 @@ const userSchema = mongoose.Schema({
         default:false
     },
     member:{
-        type:Object
+        type:Schema.Types.ObjectId,
+        ref:'Member',
+        require:true
     }
 });
 

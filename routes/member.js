@@ -6,9 +6,9 @@ const router = express.Router();
 
 router.post("/",   PostMember);
 
-router.post("/changeStatusMember/:memberId", ChangeStatusMember )
+router.post("/changeStatusMember/:memberId", ChangeStatusMember );
 
-router.get("/project/:id", GetMember);
+router.get("/member/:id", GetMember);
 
 router.get("/", GetAllMember);
 

@@ -4,6 +4,7 @@ const generateToken = require("../utils/generateToken");
 const bcrypt = require("bcryptjs");
 const { registerValidate ,loginValidate, putvalidate } = require('../validation/validate');
 const jwt = require('jsonwebtoken');
+const Member = require("../models/memberModel");
 
 
 
@@ -256,8 +257,14 @@ const ResetPassword = async(req,res)=>{
     res.status(200).send({success:true, msg:"đổi thành công"});
 
    }
-}
+};
+
+const GetMember = asyncHandler(async(req,res)=>{
+   const member = await Member.find();
+   const members = member
+   res.json(members);
+})
 
 module.exports = {
-    registerUser, loginUser, getUserProfile, getAllUser, updateUserProfile, deleteUserById, getUserById, putUserById, ForgotPassword, ResetPassword
+    registerUser, loginUser, getUserProfile, getAllUser, updateUserProfile, deleteUserById, getUserById, putUserById, ForgotPassword, ResetPassword, GetMember
 }

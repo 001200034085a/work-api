@@ -86,6 +86,10 @@ const memberSchema = mongoose.Schema({
    date:{
       type:String
    },
+   role:{
+      type:String,
+      require:true,
+   },
    isAdmin1:{
       type:Boolean,
       require:true,
