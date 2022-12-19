@@ -101,7 +101,7 @@ const PutMember = asyncHandler(async(req,res)=>{
 
     const member = await Member.findById(req.params.id);
     if(member){
-        
+        member.role = req.body.role || member.role;
         member.isAdmin1 = req.body.isAdmin1 || member.isAdmin1;
         member.isAdmin2 = req.body.isAdmin2 || member.isAdmin2;
         member.isAdmin3 = req.body.isAdmin3 || member.isAdmin3;
@@ -113,6 +113,7 @@ const PutMember = asyncHandler(async(req,res)=>{
 
         const updateMember = await member.save();
         id = updateMember.id;
+        role = updateMember.role;
         isAdmin1 = updateMember.isAdmin1;
         isAdmin2 = updateMember.isAdmin2;
         isAdmin3 = updateMember.isAdmin3;
