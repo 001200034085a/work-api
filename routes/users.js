@@ -58,6 +58,6 @@ router.post("/forgot-password", ForgotPassword);
 // 10.
 router.post("/reset-password/:id/:token",ResetPassword);
 
-router.get("/test/member/", GetMember);
+router.get("/test/member/:id", GetMember);
 
 module.exports = router;

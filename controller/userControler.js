@@ -260,7 +260,7 @@ const ResetPassword = async(req,res)=>{
 };
 
 const GetMember = asyncHandler(async(req,res)=>{
-   const member = await Member.find();
+   const member = await Member.find(req.params.user);
    const members = member
    res.json(members);
 })
