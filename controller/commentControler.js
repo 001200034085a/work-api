@@ -6,6 +6,7 @@ const PostComment = asyncHandler(async(req,res)=>{
     const user = await User.findById(req.user.id);
     const comment = {
         name: user.name,
+        image:user.image,
         comment:req.body.comment
     }
     const comments = await Comment.create(comment);
