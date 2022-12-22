@@ -129,9 +129,6 @@ const memberSchema = mongoose.Schema({
       type:Boolean,
       require:true,
       default:false,
-   },
-   token :{
-      type:String
    }
   
    

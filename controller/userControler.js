@@ -8,6 +8,7 @@ const Member = require("../models/memberModel");
 
 
 
+
 const registerUser = asyncHandler(async(req,res)=>{
 
      // validate user
@@ -66,6 +67,11 @@ const loginUser = asyncHandler(async(req,res)=>{
 
 const getUserProfile = asyncHandler(async(req, res)=>{
     const user = await User.findById(req.user.id);
+
+    const member = await Member.find({user: req.user.id});
+
+   const updateUser = await User.findByIdAndUpdate((req.user.id),{member});
+
     if(user){
         res.json({
             id : user.id,
@@ -78,6 +84,7 @@ const getUserProfile = asyncHandler(async(req, res)=>{
             phone: user.phone,
             textarea: user.textarea,
             isAdmin: user.isAdmin,
+            member,
         })
     }
     else{
@@ -259,12 +266,19 @@ const ResetPassword = async(req,res)=>{
    }
 };
 
-const GetMember = asyncHandler(async(req,res)=>{
-   const member = await Member.find(req.params.user);
-   const members = member
-   res.json(members);
-})
+// const GetMember = asyncHandler(async(req,res)=>{
+//    const user = await User.findById(req.user.id);
+
+
+//    const member = await Member.find({user: req.user.id});
+
+//    const updateUser = await User.findByIdAndUpdate((req.user.id),{member});
+
+//    res.json(member)
+// })
+
+
 
 module.exports = {
-    registerUser, loginUser, getUserProfile, getAllUser, updateUserProfile, deleteUserById, getUserById, putUserById, ForgotPassword, ResetPassword, GetMember
+    registerUser, loginUser, getUserProfile, getAllUser, updateUserProfile, deleteUserById, getUserById, putUserById, ForgotPassword, ResetPassword
 }

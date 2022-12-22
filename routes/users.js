@@ -1,5 +1,4 @@
 var express = require('express');
-const { GetMember } = require('../controller/userControler');
 var router = express.Router();
 const { 
   registerUser, loginUser , getUserProfile, getAllUser, updateUserProfile, deleteUserById, getUserById, putUserById, ForgotPassword, ResetPassword
@@ -58,6 +57,5 @@ router.post("/forgot-password", ForgotPassword);
 // 10.
 router.post("/reset-password/:id/:token",ResetPassword);
 
-router.get("/test/member/:id", GetMember);
 
 module.exports = router;

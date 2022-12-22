@@ -4,7 +4,7 @@ const { protect, isAdmin } = require("../midleware/authMidleware");
 const { isAdmin2, isAdmin8, protectMember } = require("../midleware/memberMidleware");
 const router = express.Router();
 
-router.post("/",   PostMember);
+router.post("/",  PostMember);
 
 router.post("/changeStatusMember/:memberId", ChangeStatusMember );
 

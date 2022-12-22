@@ -3,7 +3,6 @@ const User = require("../models/userModel");
 const Project = require("../models/projectModel");
 const Member = require("../models/memberModel");
 const { memberValidate } = require("../validation/memberValidate");
-const generateTokenMember = require("../utils/generateTokenmember");
 
 
 
@@ -40,6 +39,8 @@ const PostMember = asyncHandler(async(req,res)=>{
         isAdmin8: req.body.isAdmin8,
     });
 
+    
+
     res.status(200).json({
         id: newMember.id,
         user: newMember.user,
@@ -55,8 +56,7 @@ const PostMember = asyncHandler(async(req,res)=>{
         isAdmin5: newMember.isAdmin5,
         isAdmin6: newMember.isAdmin6,
         isAdmin7: newMember.isAdmin7,
-        isAdmin8: newMember.isAdmin8,
-        token : generateTokenMember(newMember.id)
+        isAdmin8: newMember.isAdmin8
     });
 });
 
@@ -76,11 +76,11 @@ const ChangeStatusMember = asyncHandler(async(req, res)=>{
     member.status = status;
 
     if(req.body.action === "refuse"){
-        const newMember = await Member.deleteOne({memberId: req.params.memberId});
+        const newMember = await Member.findByIdAndDelete(req.params.memberId);
         res.json("remove member")
     }
     else{
-        const newMember = await Member.updateOne({memberId: req.params.memberId},{status});
+        const newMember = await Member.findByIdAndUpdate((req.params.memberId),{status});
         res.status(200).send(member);
     }
  
