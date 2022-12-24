@@ -40,83 +40,156 @@ const isAdmin = (req, res, next) => {
 };
 
 const isAdmin4 = (req, res, next) => {
-    if (req.user && req.user.members.isAdmin4) {
+    const {id} = req.params;
+    
+    if(req.user.member.project[0] != id ){
+        res.status(400).json("member không thuộc project này");
+        return;   
+    }
+    else{
+      if (req.user && req.user.member.isAdmin4) {
         next();
-    } else {
+      } else {
         res.status(401);
         throw new Error('Member is not admin4');
+      }
     }
+    
 };
 
 const isAdmin1 = (req, res, next) => {
-    if (req.member && req.member.isAdmin1) {
+    const {id} = req.params;
+    
+    if(req.user.member.project[0] != id ){
+        res.status(400).json("member không thuộc project này");
+        return;   
+    }
+    else{
+      if (req.user && req.user.member.isAdmin1) {
         next();
-    } else {
+      } else {
         res.status(401);
         throw new Error('Member is not admin1');
+      }
     }
+    
 };
 
 const isAdmin2 = (req, res, next) => {
-    if (req.member && req.member.isAdmin2) {
+    const {id} = req.params;
+    
+    if(req.user.member.project[0] != id ){
+        res.status(400).json("member không thuộc project này");
+        return;   
+    }
+    else{
+      if (req.user && req.user.member.isAdmin2) {
         next();
-    } else {
+      } else {
         res.status(401);
         throw new Error('Member is not admin2');
+      }
     }
+    
 };
 
 const isAdmin3 = (req, res, next) => {
-    if (req.member && req.member.isAdmin3) {
+    const {id} = req.params;
+    
+    if(req.user.member.project[0] != id ){
+        res.status(400).json("member không thuộc project này");
+        return;   
+    }
+    else{
+      if (req.user && req.user.member.isAdmin3) {
         next();
-    } else {
+      } else {
         res.status(401);
         throw new Error('Member is not admin3');
+      }
     }
+    
 };
 
 
 const isAdmin5 = (req, res, next) => {
-    if (req.member && req.member.isAdmin5) {
+    const {id} = req.params;
+    
+    if(req.user.member.project[0] != id ){
+        res.status(400).json("member không thuộc project này");
+        return;   
+    }
+    else{
+      if (req.user && req.user.member.isAdmin5) {
         next();
-    } else {
+      } else {
         res.status(401);
         throw new Error('Member is not admin5');
+      }
     }
+    
 };
 
 const isAdmin6 = (req, res, next) => {
-    if (req.member && req.member.isAdmin6) {
+    const {id} = req.params;
+    
+    if(req.user.member.project[0] != id ){
+        res.status(400).json("member không thuộc project này");
+        return;   
+    }
+    else{
+      if (req.user && req.user.member.isAdmin6) {
         next();
-    } else {
+      } else {
         res.status(401);
         throw new Error('Member is not admin6');
+      }
     }
+    
 };
 
 const isAdmin7 = (req, res, next) => {
-    if (req.member && req.member.isAdmin7) {
+    const {id} = req.params;
+    
+    if(req.user.member.project[0] != id ){
+        res.status(400).json("member không thuộc project này");
+        return;   
+    }
+    else{
+      if (req.user && req.user.member.isAdmin7) {
         next();
-    } else {
+      } else {
         res.status(401);
         throw new Error('Member is not admin7');
+      }
     }
+    
 };
 
 
-const isAdmin8 = (req, res, next) => {
-    if (req.member && req.member.isAdmin8) {
+const isAdmin8 = async(req, res, next) => {
+    const {id} = req.params;
+
+       
+    if(req.user.member.project[1] != id ){
+        res.status(400).send({success:false, msg:"member không thuộc project này"});
+        return;   
+    }
+    else{
+      if (req.user && req.user.member.isAdmin8) {
         next();
-    } else {
+      } else {
         res.status(401);
         throw new Error('Member is not admin8');
+      }
     }
+    
 };
 
 const checkProject = (req ,res, next)=>{
     const {id} = req.params;
 
-    if(req.member.project != id){
+    if(req.user.member.project[1] != id){
         res.status(400).send({msg:"không phải thành viên dự án này"})
     }
     next();

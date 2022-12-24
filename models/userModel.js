@@ -47,67 +47,54 @@ const userSchema = mongoose.Schema({
         project:{
             type: Schema.Types.ObjectId,
             ref:'Project',
-            require:true
          },
          user:{
             type: Schema.Types.ObjectId,
             ref:'User',
-            require:true
          },
          project_owner:{
             type: Schema.Types.ObjectId,
             ref:'User',
-            require:true
          },
          status:{
             type:String,
-            require:true
          },
          date:{
             type:String
          },
          role:{
             type:String,
-            require:true,
          },
          isAdmin1:{
             type:Boolean,
-            require:true,
             default:false,
          },
          isAdmin2:{
             type:Boolean,
-            require:true,
             default:true,
          },
          isAdmin3:{
             type:Boolean,
-            require:true,
             default:false,
          },
          isAdmin4:{
             type:Boolean,
-            require:true,
             default:true,
          },
          isAdmin5:{
             type:Boolean,
-            require:true,
             default:true,
          },
          isAdmin6:{
             type:Boolean,
-            require:true,
             default:false,
          },
          isAdmin7:{
             type:Boolean,
-            require:true,
             default:false,
          },
          isAdmin8:{
             type:Boolean,
-            require:true,
             default:false,
          },
     }

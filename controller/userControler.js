@@ -9,6 +9,7 @@ const Member = require("../models/memberModel");
 
 
 
+
 const registerUser = asyncHandler(async(req,res)=>{
 
      // validate user
@@ -70,7 +71,7 @@ const getUserProfile = asyncHandler(async(req, res)=>{
 
     const member = await Member.find({user: req.user.id});
 
-   const updateUser = await User.findByIdAndUpdate((req.user.id),{member});
+    const updateUser = await User.findByIdAndUpdate((req.user.id),{member}); 
 
     if(user){
         res.json({
@@ -104,6 +105,10 @@ const updateUserProfile = asyncHandler(async(req,res)=>{
     if(error) return res.status(400).send({success:false, msg:error.details[0].message});
 
     const user = await User.findById(req.user.id);
+    const member = await Member.find({user: req.user.id});
+
+    const updateUser = await User.findByIdAndUpdate((req.user.id),{member});
+
     if (user) {
         user.name = req.body.name || user.name;
         user.image = req.body.image || user.image;
@@ -117,6 +122,8 @@ const updateUserProfile = asyncHandler(async(req,res)=>{
             // Tại sao không phải hash password ở đây.
             user.password = req.body.password;
         }
+        user.member = req.body.member || user.member;
+        
 
         const updateUser = await user.save();
         res.json({
@@ -130,7 +137,9 @@ const updateUserProfile = asyncHandler(async(req,res)=>{
             gender: updateUser.gender,
             phone: updateUser.phone,
             textarea: updateUser.textarea,
-            isAdmin: updateUser.isAdmin
+            isAdmin: updateUser.isAdmin,
+            // member: updateUser.member
+    
         });
     } else {
         res.status(401);
@@ -179,6 +188,9 @@ const deleteUserById = asyncHandler(async (req, res) => {
     if(error) return res.status(400).send({success:false, msg:error.details[0].message});
 
      const user = await User.findById(req.params.id);
+     const member = await Member.find({user: req.user.id});
+
+     const updateUser = await User.findByIdAndUpdate((req.user.id),{member});
      if (user) {
          user.name = req.body.name || user.name;
          user.email = req.body.email || user.email;
@@ -193,6 +205,7 @@ const deleteUserById = asyncHandler(async (req, res) => {
             // Tại sao không phải hash password ở đây.
             user.password = req.body.password;
          }
+         user.member = req.body.member || user.member;
  
          const updateUser = await user.save();
          id = updateUser.id,
