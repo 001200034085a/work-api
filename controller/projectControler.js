@@ -73,8 +73,11 @@ const PutProject = asyncHandler(async(req, res)=>{
     
 });
 
-
+const findOneProject = asyncHandler(async(req,res)=>{
+    const project = await Project.findOne({title : req.body.title});
+    res.status(200).json(project)
+})
 
 module.exports = {
-    PostProject, GetProject, DeleteProject, PutProject
+    PostProject, GetProject, DeleteProject, PutProject, findOneProject
 }
