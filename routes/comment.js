@@ -7,7 +7,7 @@ router.post("/", protect, PostComment);
 
 router.get("/", GetAllComment);
 
-router.get("/project/:id", GetCommentProject)
+router.get("/work/:id", GetCommentProject)
 
 router.delete("/:id", protect,  DeleteComment);
 

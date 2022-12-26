@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 const {Schema} = mongoose;
 
 const commentSchema = mongoose.Schema({
-   project:{
+   work:{
       type: Schema.Types.ObjectId,
-      ref:'Project',
+      ref:'Work',
       require:true
    },
    comment:{

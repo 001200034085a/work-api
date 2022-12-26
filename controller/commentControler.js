@@ -1,13 +1,13 @@
 const asyncHandler = require("express-async-handler");
 const Comment = require("../models/commentModel");
-const Project = require("../models/projectModel");
 const User = require("../models/userModel");
+const Work = require("../models/workModel");
 
 const PostComment = asyncHandler(async(req,res)=>{
     const user = await User.findById(req.user.id);
 
       const comment = {
-        project: user.member.project,
+        work: user.member.work ,
         name: user.name,
         image:user.image,
         comment:req.body.comment
@@ -17,7 +17,7 @@ const PostComment = asyncHandler(async(req,res)=>{
 });
 
 const GetCommentProject = asyncHandler(async(req,res)=>{
-  const project = await Comment.find({project :req.params.id});
+  const project = await Comment.find({work :req.params.id});
   res.json(project);
 })
 

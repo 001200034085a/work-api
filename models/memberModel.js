@@ -63,7 +63,12 @@ const { Schema } = mongoose;
 
 const memberSchema = mongoose.Schema({
    // id: Schema.Types.ObjectId,
-     
+
+   work:{
+      type: Schema.Types.ObjectId,
+      ref:'Work',
+      require:true
+   },
    project:{
       type: Schema.Types.ObjectId,
       ref:'Project',
