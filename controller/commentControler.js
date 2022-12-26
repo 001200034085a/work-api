@@ -1,16 +1,17 @@
 const asyncHandler = require("express-async-handler");
 const Comment = require("../models/commentModel");
+const Project = require("../models/projectModel");
 const User = require("../models/userModel");
 
 const PostComment = asyncHandler(async(req,res)=>{
     const user = await User.findById(req.user.id);
-    const comment = {
+      const comment = {
         name: user.name,
         image:user.image,
         comment:req.body.comment
-    }
-    const comments = await Comment.create(comment);
-    res.status(200).json(comments);
+      }
+      const comments = await Comment.create(comment);
+      res.status(200).json(comments);
 });
 
 const GetAllComment = asyncHandler(async(req,res)=>{
@@ -20,6 +21,12 @@ const GetAllComment = asyncHandler(async(req,res)=>{
 
 const DeleteComment = asyncHandler(async(req,res)=>{
   const comment = await Comment.findById(req.params.id);
+  const user = await User.findById(req.user.id);
+  if(user.name !== comment.name){
+    res.status(400).json({msg: "bạn không xóa đc cái này"});
+    return;
+ }
+
   if(comment){
     const remove = await comment.remove();
     res.json({msg:"xóa thành công"})

@@ -40,74 +40,46 @@ const isAdmin = (req, res, next) => {
 };
 
 const isAdmin4 = (req, res, next) => {
-    const {id} = req.params;
     
-    if(req.user.member.project[0] != id ){
-        res.status(400).json("member không thuộc project này");
-        return;   
-    }
-    else{
-      if (req.user && req.user.member.isAdmin4) {
+      if (req.user && req.user.member.isAdmin4 == "true") {
         next();
       } else {
         res.status(401);
         throw new Error('Member is not admin4');
       }
-    }
     
 };
 
 const isAdmin1 = (req, res, next) => {
-    const {id} = req.params;
-    
-    if(req.user.member.project[0] != id ){
-        res.status(400).json("member không thuộc project này");
-        return;   
-    }
-    else{
-      if (req.user && req.user.member.isAdmin1) {
+   
+      if (req.user && req.user.member.isAdmin1 == "true") {
         next();
       } else {
         res.status(401);
         throw new Error('Member is not admin1');
       }
-    }
     
 };
 
 const isAdmin2 = (req, res, next) => {
-    const {id} = req.params;
     
-    if(req.user.member.project[0] != id ){
-        res.status(400).json("member không thuộc project này");
-        return;   
-    }
-    else{
-      if (req.user && req.user.member.isAdmin2) {
+      if (req.user && req.user.member.isAdmin2 == "true") {
         next();
       } else {
         res.status(401);
         throw new Error('Member is not admin2');
       }
-    }
     
 };
 
 const isAdmin3 = (req, res, next) => {
-    const {id} = req.params;
-    
-    if(req.user.member.project[0] != id ){
-        res.status(400).json("member không thuộc project này");
-        return;   
-    }
-    else{
-      if (req.user && req.user.member.isAdmin3) {
+   
+      if (req.user && req.user.member.isAdmin3 == "true") {
         next();
       } else {
         res.status(401);
         throw new Error('Member is not admin3');
       }
-    }
     
 };
 
@@ -115,81 +87,53 @@ const isAdmin3 = (req, res, next) => {
 const isAdmin5 = (req, res, next) => {
     const {id} = req.params;
     
-    if(req.user.member.project[0] != id ){
-        res.status(400).json("member không thuộc project này");
-        return;   
-    }
-    else{
-      if (req.user && req.user.member.isAdmin5) {
+   
+      if (req.user && req.user.member.isAdmin5 == "true") {
         next();
       } else {
         res.status(401);
         throw new Error('Member is not admin5');
       }
-    }
     
 };
 
 const isAdmin6 = (req, res, next) => {
-    const {id} = req.params;
-    
-    if(req.user.member.project[0] != id ){
-        res.status(400).json("member không thuộc project này");
-        return;   
-    }
-    else{
-      if (req.user && req.user.member.isAdmin6) {
+   
+      if (req.user && req.user.member.isAdmin6 == "true") {
         next();
       } else {
         res.status(401);
         throw new Error('Member is not admin6');
-      }
-    }
-    
+      } 
 };
 
 const isAdmin7 = (req, res, next) => {
-    const {id} = req.params;
     
-    if(req.user.member.project[0] != id ){
-        res.status(400).json("member không thuộc project này");
-        return;   
-    }
-    else{
-      if (req.user && req.user.member.isAdmin7) {
+      if (req.user && req.user.member.isAdmin7 == "true") {
         next();
       } else {
         res.status(401);
         throw new Error('Member is not admin7');
       }
-    }
     
 };
 
 
-const isAdmin8 = async(req, res, next) => {
-    const {id} = req.params;
+const isAdmin8 = (req, res, next) => {
 
-       
-    if(req.user.member.project[1] != id ){
-        res.status(400).send({success:false, msg:"member không thuộc project này"});
-        return;   
-    }
-    else{
-      if (req.user && req.user.member.isAdmin8) {
+      if (req.user && req.user.member.isAdmin8 == "true") {
         next();
       } else {
         res.status(401);
         throw new Error('Member is not admin8');
       }
-    }
     
 };
 
 const checkProject = (req ,res, next)=>{
     const {id} = req.params;
 
-    if(req.user.member.project[1] != id){
+    if(req.user.member.project != id){
         res.status(400).send({msg:"không phải thành viên dự án này"})
     }
     next();

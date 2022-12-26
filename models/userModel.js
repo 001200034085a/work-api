@@ -66,35 +66,35 @@ const userSchema = mongoose.Schema({
             type:String,
          },
          isAdmin1:{
-            type:Boolean,
+            type:String,
             default:false,
          },
          isAdmin2:{
-            type:Boolean,
+            type:String,
             default:true,
          },
          isAdmin3:{
-            type:Boolean,
+            type:String,
             default:false,
          },
          isAdmin4:{
-            type:Boolean,
+            type:String,
             default:true,
          },
          isAdmin5:{
-            type:Boolean,
+            type:String,
             default:true,
          },
          isAdmin6:{
-            type:Boolean,
+            type:String,
             default:false,
          },
          isAdmin7:{
-            type:Boolean,
+            type:String,
             default:false,
          },
          isAdmin8:{
-            type:Boolean,
+            type:String,
             default:false,
          },
     }
