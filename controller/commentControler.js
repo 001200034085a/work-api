@@ -5,7 +5,9 @@ const User = require("../models/userModel");
 
 const PostComment = asyncHandler(async(req,res)=>{
     const user = await User.findById(req.user.id);
+
       const comment = {
+        project: user.member.project,
         name: user.name,
         image:user.image,
         comment:req.body.comment
@@ -13,6 +15,11 @@ const PostComment = asyncHandler(async(req,res)=>{
       const comments = await Comment.create(comment);
       res.status(200).json(comments);
 });
+
+const GetCommentProject = asyncHandler(async(req,res)=>{
+  const project = await Comment.find({project :req.params.id});
+  res.json(project);
+})
 
 const GetAllComment = asyncHandler(async(req,res)=>{
    const comment = await Comment.find({});
@@ -58,5 +65,6 @@ module.exports = {
   PostComment,
   GetAllComment,
   DeleteComment,
-  PutComment
+  PutComment,
+  GetCommentProject
 }
