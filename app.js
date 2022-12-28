@@ -14,6 +14,7 @@ const projectRouter = require("./routes/project");
 const memberRouter = require("./routes/member");
 const commentRouter = require("./routes/comment");
 
+
 var app = express();
 
 // connect to database
@@ -28,6 +29,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+app.use("/uploads", express.static('image'));
 
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
