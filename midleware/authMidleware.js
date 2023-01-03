@@ -43,9 +43,9 @@ const isAdmin = (req, res, next) => {
 const isAdmin4 = (req, res, next) => {
   const {id} = req.params;
 
-  const users = req.user.member.project.filter(x => x.project = id);
+  const users = req.user.member.work.filter(x => x.project = id);
   const index = users.findIndex(x=>x == id)
-  
+
       if (req.user && req.user.member.isAdmin4[index] == "true") {
         next();
       } else {
@@ -103,7 +103,7 @@ const isAdmin3 = (req, res, next) => {
 const isAdmin5 = (req, res, next) => {
   const {id} = req.params;
 
-  const users = req.user.member.project.filter(x => x.project = id);
+  const users = req.user.member.work.filter(x => x.project = id);
   const index = users.findIndex(x=>x == id)
    
       if (req.user && req.user.member.isAdmin5[index] == "true") {
