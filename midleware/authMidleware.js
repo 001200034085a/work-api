@@ -1,5 +1,6 @@
 const asyncHandler = require('express-async-handler');
 const jwt = require('jsonwebtoken');
+const { db } = require('../models/userModel');
 const User = require('../models/userModel');
 
 // 1. Kiểm tra xem token có hợp lệ hay không
@@ -51,14 +52,13 @@ const isAdmin4 = (req, res, next) => {
 };
 
 const isAdmin1 = (req, res, next) => {
-   
+
       if (req.user && req.user.member.isAdmin1 == "true") {
         next();
       } else {
         res.status(401);
         throw new Error('Member is not admin1');
       }
-    
 };
 
 const isAdmin2 = (req, res, next) => {
@@ -85,7 +85,6 @@ const isAdmin3 = (req, res, next) => {
 
 
 const isAdmin5 = (req, res, next) => {
-    const {id} = req.params;
     
    
       if (req.user && req.user.member.isAdmin5 == "true") {
@@ -120,7 +119,7 @@ const isAdmin7 = (req, res, next) => {
 
 
 const isAdmin8 = (req, res, next) => {
-
+  
       if (req.user && req.user.member.isAdmin8 == "true") {
         next();
       } else {
@@ -133,10 +132,11 @@ const isAdmin8 = (req, res, next) => {
 const checkProject = (req ,res, next)=>{
     const {id} = req.params;
 
+    
     if(req.user.member.project != id){
-        res.status(400).send({msg:"không phải thành viên dự án này"})
-    }
-    next();
+      res.status(400).send({msg:"không phải thành viên dự án này"});
+    } 
+    next(); 
 }
 
 
