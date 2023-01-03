@@ -41,8 +41,12 @@ const isAdmin = (req, res, next) => {
 };
 
 const isAdmin4 = (req, res, next) => {
-    
-      if (req.user && req.user.member.isAdmin4 == "true") {
+  const {id} = req.params;
+
+  const users = req.user.member.project.filter(x => x.project = id);
+  const index = users.findIndex(x=>x == id)
+  
+      if (req.user && req.user.member.isAdmin4[index] == "true") {
         next();
       } else {
         res.status(401);
@@ -52,8 +56,12 @@ const isAdmin4 = (req, res, next) => {
 };
 
 const isAdmin1 = (req, res, next) => {
+    const {id} = req.params;
 
-      if (req.user && req.user.member.isAdmin1 == "true") {
+    const users = req.user.member.project.filter(x => x.project = id);
+    const index = users.findIndex(x=>x == id)
+
+      if (req.user && req.user.member.isAdmin1[index] == "true") {
         next();
       } else {
         res.status(401);
@@ -62,8 +70,12 @@ const isAdmin1 = (req, res, next) => {
 };
 
 const isAdmin2 = (req, res, next) => {
+    const {id} = req.params;
+
+    const users = req.user.member.project.filter(x => x.project = id);
+    const index = users.findIndex(x=>x == id)
     
-      if (req.user && req.user.member.isAdmin2 == "true") {
+      if (req.user && req.user.member.isAdmin2[index] == "true") {
         next();
       } else {
         res.status(401);
@@ -73,8 +85,12 @@ const isAdmin2 = (req, res, next) => {
 };
 
 const isAdmin3 = (req, res, next) => {
+  const {id} = req.params;
+
+  const users = req.user.member.project.filter(x => x.project = id);
+  const index = users.findIndex(x=>x == id)
    
-      if (req.user && req.user.member.isAdmin3 == "true") {
+      if (req.user && req.user.member.isAdmin3[index] == "true") {
         next();
       } else {
         res.status(401);
@@ -85,9 +101,12 @@ const isAdmin3 = (req, res, next) => {
 
 
 const isAdmin5 = (req, res, next) => {
-    
+  const {id} = req.params;
+
+  const users = req.user.member.project.filter(x => x.project = id);
+  const index = users.findIndex(x=>x == id)
    
-      if (req.user && req.user.member.isAdmin5 == "true") {
+      if (req.user && req.user.member.isAdmin5[index] == "true") {
         next();
       } else {
         res.status(401);
@@ -97,8 +116,13 @@ const isAdmin5 = (req, res, next) => {
 };
 
 const isAdmin6 = (req, res, next) => {
+
+    const {id} = req.params;
+
+    const users = req.user.member.project.filter(x => x.project = id);
+    const index = users.findIndex(x=>x == id)
    
-      if (req.user && req.user.member.isAdmin6 == "true") {
+      if (req.user && req.user.member.isAdmin6[index] == "true") {
         next();
       } else {
         res.status(401);
@@ -107,8 +131,13 @@ const isAdmin6 = (req, res, next) => {
 };
 
 const isAdmin7 = (req, res, next) => {
+
+    const {id} = req.params;
+
+    const users = req.user.member.project.filter(x => x.project = id);
+    const index = users.findIndex(x=>x == id)
     
-      if (req.user && req.user.member.isAdmin7 == "true") {
+      if (req.user && req.user.member.isAdmin7[index] == "true") {
         next();
       } else {
         res.status(401);
@@ -119,8 +148,13 @@ const isAdmin7 = (req, res, next) => {
 
 
 const isAdmin8 = (req, res, next) => {
+
+    const {id} = req.params;
+
+    const users = req.user.member.project.filter(x => x.project = id);
+    const index = users.findIndex(x=>x == id)
   
-      if (req.user && req.user.member.isAdmin8 == "true") {
+      if (req.user && req.user.member.isAdmin8[index] == "true") {
         next();
       } else {
         res.status(401);
@@ -132,11 +166,15 @@ const isAdmin8 = (req, res, next) => {
 const checkProject = (req ,res, next)=>{
     const {id} = req.params;
 
+    const users = req.user.member.project.filter(x => x.project = id);
+    const index = users.findIndex(x=>x == id)
     
-    if(req.user.member.project != id){
+    
+    if(req.user.member.project[index] != id){
       res.status(400).send({msg:"không phải thành viên dự án này"});
     } 
     next(); 
+    
 }
 
 
