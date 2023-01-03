@@ -43,7 +43,7 @@ const isAdmin = (req, res, next) => {
 const isAdmin4 = (req, res, next) => {
   const {id} = req.params;
 
-  const users = req.user.member.work.filter(x => x.project = id);
+  const users = req.user.member.work.filter(x => x.work = id);
   const index = users.findIndex(x=>x == id)
 
       if (req.user && req.user.member.isAdmin4[index] == "true") {
@@ -72,7 +72,7 @@ const isAdmin1 = (req, res, next) => {
 const isAdmin2 = (req, res, next) => {
     const {id} = req.params;
 
-    const users = req.user.member.project.filter(x => x.project = id);
+    const users = req.user.member._id.filter(x => x._id = id);
     const index = users.findIndex(x=>x == id)
     
       if (req.user && req.user.member.isAdmin2[index] == "true") {
@@ -103,7 +103,7 @@ const isAdmin3 = (req, res, next) => {
 const isAdmin5 = (req, res, next) => {
   const {id} = req.params;
 
-  const users = req.user.member.work.filter(x => x.project = id);
+  const users = req.user.member.work.filter(x => x.work = id);
   const index = users.findIndex(x=>x == id)
    
       if (req.user && req.user.member.isAdmin5[index] == "true") {
@@ -151,7 +151,7 @@ const isAdmin8 = (req, res, next) => {
 
     const {id} = req.params;
 
-    const users = req.user.member.project.filter(x => x.project = id);
+    const users = req.user.member._id.filter(x => x._id = id);
     const index = users.findIndex(x=>x == id)
   
       if (req.user && req.user.member.isAdmin8[index] == "true") {
@@ -177,7 +177,19 @@ const checkProject = (req ,res, next)=>{
     
 }
 
+const checkWork = (req ,res, next)=>{
+  const {id} = req.params;
 
+  const users = req.user.member.work.filter(x => x.work = id);
+  const index = users.findIndex(x=>x == id)
+  
+  
+  if(req.user.member.work[index] != id){
+    res.status(400).send({msg:"không phải người làm công việc này"});
+  } 
+  next(); 
+  
+}
 
 module.exports = {
     protect,
@@ -190,5 +202,6 @@ module.exports = {
     isAdmin6,
     isAdmin7,
     isAdmin8,
-    checkProject
+    checkProject,
+    checkWork
 }

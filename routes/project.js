@@ -12,8 +12,8 @@ router.get("/", GetProject);
 
 router.get("/findOneProject", findOneProject);
 
-router.delete("/:id", protect, isAdmin7, checkProject, DeleteProject);
+router.delete("/:id", protect, checkProject, isAdmin7, DeleteProject);
 
-router.put("/:id",  protect, isAdmin1, checkProject, PutProject);
+router.put("/:id",  protect, checkProject, isAdmin1, PutProject);
 
 module.exports = router;

@@ -15,6 +15,6 @@ router.put("/:id", protect, isAdmin8,  PutMember);
 
 router.put("/isAdmin/:id", protect, isAdmin, PutMember);
 
-router.delete("/:id", protect, isAdmin2, DeleteMember);
+router.delete("/:id", protect, isAdmin, DeleteMember);
 
 module.exports = router;
