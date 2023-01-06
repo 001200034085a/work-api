@@ -94,7 +94,7 @@ const getUserProfile = asyncHandler(async(req, res)=>{
 });
 
 const getAllUser = asyncHandler(async(req,res)=>{
-    const user = await User.find({});
+    const user = await User.find({}).select('-member');
     res.json(user)
 });
 
