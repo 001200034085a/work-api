@@ -70,7 +70,6 @@ const getUserProfile = asyncHandler(async(req, res)=>{
     const user = await User.findById(req.user.id);
 
     const member = await Member.find({user: req.user.id});
-
     const updateUser = await User.findByIdAndUpdate((req.user.id),{member}); 
 
     if(user){

@@ -170,7 +170,7 @@ const checkProject = (req ,res, next)=>{
     const index = users.findIndex(x=>x == id)
     
     if(req.user.member.project[index] != id){
-      res.status(400).send({msg:"không phải thành viên dự án này"});
+      res.status(400).send({ msg:"không phải thành viên dự án này"});
     } 
     next(); 
     
