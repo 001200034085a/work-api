@@ -6,14 +6,23 @@ const Work = require("../models/workModel");
 const PostComment = asyncHandler(async(req,res)=>{
     const user = await User.findById(req.user.id);
 
+    const works = await Work.findById(req.params.id);
+
+    if(works){
       const comment = {
-        work: user.member.work ,
+        work: works.id ,
         name: user.name,
         image:user.image,
         comment:req.body.comment
       }
       const comments = await Comment.create(comment);
       res.status(200).json(comments);
+    }
+    else{
+      res.status(400);
+      throw new Error('not found')
+    }
+      
 });
 
 const GetCommentProject = asyncHandler(async(req,res)=>{
