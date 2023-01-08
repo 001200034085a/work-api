@@ -5,7 +5,6 @@ const Work = require("../models/workModel");
 
 const PostComment = asyncHandler(async(req,res)=>{
     const user = await User.findById(req.user.id);
-
     const works = await Work.findById(req.params.id);
 
     if(works){
@@ -37,11 +36,6 @@ const GetAllComment = asyncHandler(async(req,res)=>{
 
 const DeleteComment = asyncHandler(async(req,res)=>{
   const comment = await Comment.findById(req.params.id);
-  const user = await User.findById(req.user.id);
-  if(user.name !== comment.name){
-    res.status(400).json({msg: "bạn không xóa đc cái này"});
-    return;
- }
 
   if(comment){
     const remove = await comment.remove();
@@ -51,6 +45,7 @@ const DeleteComment = asyncHandler(async(req,res)=>{
     res.status(400);
     throw new Error('Comment not found');
   }
+  
   
 });
 

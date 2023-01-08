@@ -11,6 +11,6 @@ router.get("/work/:id", GetCommentProject)
 
 router.delete("/:id", protect,  DeleteComment);
 
-router.put("/:id", protect, PutComment);
+router.put("/:id", protect,  PutComment);
 
 module.exports = router;
