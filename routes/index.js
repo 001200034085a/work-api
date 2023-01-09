@@ -30,7 +30,7 @@ router.get('/upload', function(req, res, next) {
 router.post("/upload", upload.single("image"), (req,res)=>{
   res.json({
     msg:"upload image",
-    url: 'http://localhost:5000/uploads/'+req.file.filename
+    url: `http://localhost:5000/uploads/${req.file.filename}`
   })
 });
 

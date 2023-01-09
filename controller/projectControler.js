@@ -75,7 +75,14 @@ const PutProject = asyncHandler(async(req, res)=>{
 
 const findOneProject = asyncHandler(async(req,res)=>{
     const project = await Project.findOne({title : req.body.title});
-    res.status(200).json(project)
+    if(project){
+        res.status(200).json(project)
+    }
+    else{
+        res.status(401);
+        throw new Error('project not found')
+    }
+    
 })
 
 module.exports = {
