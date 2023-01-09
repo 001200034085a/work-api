@@ -176,19 +176,7 @@ const checkProject = (req ,res, next)=>{
     
 }
 
-const checkWork = (req ,res, next)=>{
-  const {id} = req.params;
 
-  const users = req.user.member.work.filter(x => x.work = id);
-  const index = users.findIndex(x=>x == id)
-  
-  
-  if(req.user.member.work[index] != id){
-    res.status(400).send({msg:"không phải người làm công việc này"});
-  } 
-  next(); 
-  
-}
 
 module.exports = {
     protect,
@@ -201,6 +189,6 @@ module.exports = {
     isAdmin6,
     isAdmin7,
     isAdmin8,
-    checkProject,
-    checkWork
+    checkProject
+  
 }
