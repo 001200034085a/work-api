@@ -47,7 +47,6 @@ const PostMember = asyncHandler(async(req,res)=>{
         user: newMember.user,
         project: newMember.project,
         project_owner: newMember.project_owner,
-        work: newMember.work,
         status: newMember.status,
         date: newMember.date,
         role: newMember.role,

@@ -43,8 +43,7 @@ const loginValidate=(data)=>{
 const putvalidate=(data)=>{
     const Schema=joi.object({
         name:joi.string()
-        .min(5)
-        .max(100),
+        .pattern(new RegExp('^[0-9A-Za-z]{5-100}$')),
 
         image:joi.string(),
 
