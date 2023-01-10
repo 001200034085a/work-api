@@ -10,11 +10,11 @@ router.get("/", GetAllWork);
 
 router.get("/:id", getById);
 
-router.put("/:id", protect,  isAdmin4,  putWorkById);
+router.put("/:id", protect,  isAdmin,  putWorkById);
 
-router.put("/status/:id", protect,  isAdmin5, putUserById);
+router.put("/status/:id", protect, putUserById);
 
-router.put("/information/:id", protect,  isAdmin4,  putInformation);
+router.put("/information/:id", protect, putInformation);
 
 router.delete("/:id", protect, isAdmin,  DeleteWork);
 

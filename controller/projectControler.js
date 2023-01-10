@@ -1,5 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const Project = require("../models/projectModel");
+const User = require("../models/userModel");
+const Member = require("../models/memberModel");
 const {projectValidate} = require("../validation/projectValidate");
 
 
@@ -14,7 +16,10 @@ const PostProject = asyncHandler(async(req, res)=>{
         res.status(400);
         throw new Error('đã có dự án này rồi');
     }
+    
     const newProject = await Project.create({title, textarea, deadline, status});
+    
+
     if(newProject){
         res.status(200).json({
             id:newProject.id,

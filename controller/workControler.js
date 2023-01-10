@@ -10,18 +10,19 @@ const PostWork = asyncHandler(async(req,res)=>{
     const {error} = workValidate(req.body);
     if(error) return res.status(400).send({success:false, msg:error.details[0].message});
 
-   const {work, progress, status, priority, description, deadline} = req.body;
+   const {work, type, progress, status, priority, description, deadline} = req.body;
    const works = await Work.findOne({work});
 
    if(works){
     res.status(400).send({success:false, msg:'đã có công việc này'})
    }
 
-   const newWork = await Work.create({work, progress, status, priority, description, deadline});
+   const newWork = await Work.create({work, type, progress, status, priority, description, deadline});
    if(newWork){
       res.status(200).json({
         id: newWork.id,
         work: newWork.work,
+        type: newWork.type,
         progress: newWork.progress,
         status: newWork.status,
         priority: newWork.priority,
@@ -45,6 +46,7 @@ const putWorkById = asyncHandler(async(req,res)=>{
 
   if(works){
     works.work = req.body.work || works.work;
+    works.type = req.body.type || works.type;
     works.progress = req.body.progress || works.progress;
     works.status = req.body.status || works.status;
     works.priority = req.body.priority || works.priority;
@@ -54,6 +56,7 @@ const putWorkById = asyncHandler(async(req,res)=>{
     const updateWork = await works.save();
     id = updateWork.id,
     work = updateWork.work,
+    type = updateWork.type,
     progress = updateWork.progress,
     status = updateWork.status,
     priority = updateWork.priority,

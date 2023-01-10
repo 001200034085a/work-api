@@ -1,6 +1,8 @@
 const mongoose = require ('mongoose');
+const {Schema} = require('mongoose');
 
 const projectSchema = mongoose.Schema({
+    
     title:{
         type:String,
         require:true,

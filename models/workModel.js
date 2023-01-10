@@ -1,8 +1,13 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const { string } = require('joi');
+const { Schema } = mongoose;
+
 
 const workSchema = mongoose.Schema({
+    type:{
+        type:String,
+        require:true
+    },
     work:{
         type:String,
         require:true

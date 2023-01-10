@@ -12,7 +12,7 @@ router.get("/", GetProject);
 
 router.get("/findOneProject", findOneProject);
 
-router.delete("/:id", protect, checkProject, isAdmin7, DeleteProject);
+router.delete("/:id", protect,  isAdmin, DeleteProject);
 
 router.put("/:id",  protect, checkProject, isAdmin1, PutProject);
 

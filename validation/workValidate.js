@@ -6,7 +6,11 @@ const workValidate = (data)=>{
     .min(1)
     .max(100)
     .required(),
-
+ 
+    type:joi.string()
+    .regex(/nhiệm vụ$|vấn đề$/)
+    .required(),
+    
     progress:joi.string()
     .regex(/hoàn thành$|đang làm$|chưa làm$/)
     .required(),
