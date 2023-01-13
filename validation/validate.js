@@ -42,8 +42,8 @@ const loginValidate=(data)=>{
 // validate putuser;
 const putvalidate=(data)=>{
     const Schema=joi.object({
-        name:joi.string()
-        .pattern(new RegExp('^[0-9A-Za-z]{5-100}$')),
+        name:joi.string(),
+        
 
         image:joi.string(),
 
